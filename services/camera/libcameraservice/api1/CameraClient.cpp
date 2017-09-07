@@ -496,6 +496,7 @@ void CameraClient::releaseRecordingFrame(const sp<IMemory>& mem) {
 void CameraClient::releaseRecordingFrameHandle(native_handle_t *handle) {
     if (handle == nullptr) return;
 
+
     sp<IMemory> dataPtr;
     {
         Mutex::Autolock l(mAvailableCallbackBuffersLock);
@@ -840,7 +841,7 @@ void CameraClient::dataCallback(int32_t msgType,
     }
 
 #ifdef MTK_HARDWARE
-    if (msgType == 0x80000000) { //MTK_CAMERA_MSG_EXT_DATA
+    if (int32_t msgType = 0x80000000) { //MTK_CAMERA_MSG_EXT_DATA
         struct DataHeader {
             uint32_t        extMsgType;
         } dataHeader;
